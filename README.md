@@ -1,34 +1,67 @@
-# DeviceInspector Utility for Unity
+# Device Inspector for Unity
 
 ## Introduction
-The `DeviceInspector` utility, part of the `com.Klazapp.Utility` namespace, is designed to determine whether the application is running on a mobile device or in the Unity Editor. It includes checks for various conditions such as running in the Editor's simulator or the game view.
+
+The Device Inspector utility, developed under the `com.Klazapp.Utility` namespace, provides essential tools to determine the running environment of a Unity application. It identifies whether the application is executing on a mobile device, within the Unity Editor, or in a simulator environment, enhancing the development and testing processes by adapting functionality dynamically based on the environment.
 
 ## Features
-- Determines if the application is running on a mobile device.
-- Checks if the application is running in the Unity Editor.
-- Checks if the Editor is in simulator view (Unity 2021.3 or newer).
+
+- **Environment Detection:** Easily detect if your application is running on a mobile device, in the Unity Editor, or in a device simulator.
+- **Editor-specific Checks:** Offers methods to differentiate between game view and simulator view within the Unity Editor, facilitating targeted debugging and feature implementation.
+- **Cross-platform Utility:** Useful across various platforms, simplifying the process of writing platform-specific code.
 
 ## Dependencies
-To use `Device Inspector`, certain dependencies are required. Ensure these are included in your Unity project.
-- **Unity Version**: Minimum Unity 2020.3 LTS.
+
+- **Unity Editor:** Utilizes Unity Editor scripts to check and manage editor-specific states and environments.
 
 ## Compatibility
-| Compatibility        | URP | BRP | HDRP |
-|----------------------|-----|-----|------|
-| Compatible           | ✔️  | ✔️  | ✔️   |
+
+This package does not rely on specific Unity rendering pipelines or versions and is primarily aimed at improving editor functionality and cross-platform development.
+
+| Compatibility | URP | BRP | HDRP |
+|---------------|-----|-----|------|
+| Compatible    | Yes | Yes | Yes  |
 
 ## Installation
-1. Open the Unity Package Manager (`Window` > `Package Manager`).
-2. Click `+`, select `Add package from git URL...`, and enter `https://github.com/klazapp/Unity-Device-Inspector-Public.git`.
-3. Unity will download and make the package available in your project.
+
+To install the Device Inspector package:
+
+1. Clone the repository or download the latest release.
+2. Import the `DeviceInspector.cs` script into your Unity project, ideally within an `Editor` folder to segregate editor-only scripts from runtime code.
 
 ## Usage
+
+The `DeviceInspector` class can be used to programmatically determine the running environment of your Unity application, which helps in implementing platform-specific functionalities or debugging. Here are some examples of how to use the class:
+
+### Check if Running on a Mobile Device
+
+Determine if the application is running on a mobile device or an emulator/simulator within the Unity Editor:
+
 ```csharp
-Write Something here
+bool isMobile = DeviceInspector.IsMobileDevice();
+Debug.Log("Is this a mobile device or simulator? " + isMobile);
 ```
 
+### Differentiate Between Editor Game View and Simulator
+
+Check if the Unity Editor is currently in game view or simulating a mobile device:
+
+```csharp
+bool isSimulator = DeviceInspector.IsEditorSimulator();
+bool isGameView = DeviceInspector.IsEditorGameView();
+
+Debug.Log("Is this running in the simulator? " + isSimulator);
+Debug.Log("Is this running in the game view? " + isGameView);
+```
+
+These checks are especially useful when you need to debug or alter behavior based on whether the application is running directly on a physical device, a simulator, or within the Unity Editor's game view. This functionality can be integrated to adjust UI elements, optimize performance, or apply platform-specific settings dynamically.
+
 ## To-Do List (Future Features)
-- 
+
+- [ ] Expand device type detection to include additional platforms and environments.
+- [ ] Provide a GUI within the Unity Editor to toggle and visualize environment settings directly.
+- [ ] Integrate more detailed device-specific features and checks.
 
 ## License
-This utility is released under the [MIT License](LICENSE).
+
+This package is available under the MIT License, allowing you to use and modify the tool as needed for both personal and commercial projects.
